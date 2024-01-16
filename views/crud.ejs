@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <h1>Player Roster</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <% 
+          const sortingUp = '<i class="fa-solid fa-sort-up"></i>';
+          const sortingDown = `<i class="fa-solid fa-sort-down"></i>`; 
+        %>
+        <th><a href="/sorting/name">Name</a> <%- sortingByName === 1 ? sortingUp : sortingByName === -1 ? sortingDown : '' %></th>
+        <th><a href="/sorting/number">Number</a> <%- sortingByNumber === 1 ? sortingUp : sortingByNumber === -1 ? sortingDown : '' %></th>
+        <th><a href="/sorting/goals">Goals</a> <%- sortingByGoals === 1 ? sortingUp : sortingByGoals === -1 ? sortingDown : '' %></th>
+        <th>Score</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody> 
+    <% players.forEach((player) => { %>
+      <tr>
+        <td><%= player.playerName %></td>
+        <td><%= player.playerNumber %></td>
+        <td><%= player.goals %></td>
+        <td><button onclick="window.location.href='/score/<%= player._id %>'">Score</button></td>
+        <td><a href="/edit/<%= player._id %>">Edit</a></td>
+        <td><a href="/delete/<%= player._id %>">Delete</a></td>
+      </tr>
+
+    <% }); %>
+    </tbody>
+  </table>
+
+  <h2>Add Player</h2>
+  <form action="/create" method="post">
+    <input type="text" name="playerName" placeholder="Player's Name" required>
+    <input type="number" name="playerNumber" placeholder="Player's Number" required>
+    <button type="submit">Add Player</button>
+  </form>
+  
+  <script src="https://kit.fontawesome.com/297392fead.js" crossorigin="anonymous"></script>
+</body>
+</html>

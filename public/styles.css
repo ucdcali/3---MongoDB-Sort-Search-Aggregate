@@ -1,0 +1,7 @@
+/* Remove hyperlink styling and set custom colors */
+a,
+a:link,
+a:visited {
+  text-decoration: none; /* Remove underline */
+  color: #333; /* Specify your desired text color */
+}
